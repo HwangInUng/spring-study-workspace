@@ -1,0 +1,15 @@
+package gui.school;
+
+public class Student {
+	public void goSchool() {
+		System.out.println("등교");
+	}
+	
+	public void startStudy() {
+		System.out.println("수업 시작");
+	}
+	
+	public void endStudy() {
+		
+	}
+}

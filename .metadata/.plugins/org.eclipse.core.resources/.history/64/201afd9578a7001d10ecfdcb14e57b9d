@@ -1,0 +1,5 @@
+package com.edu.springmvc.controller;
+
+public interface Controller {
+
+}

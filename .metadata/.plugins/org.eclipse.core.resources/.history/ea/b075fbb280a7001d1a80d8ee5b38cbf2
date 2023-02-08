@@ -1,0 +1,6 @@
+package com.edu.springmvc.model;
+
+
+public class BoardService {
+
+}

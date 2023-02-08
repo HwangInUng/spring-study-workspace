@@ -1,0 +1,11 @@
+package gui.spring.context;
+
+/*
+ * Spring 프로젝트에서 사용할 모든 객체를 직접 new하지 않고
+ * 주입을 받기 위하여, 모든 객체의 리스트를 등록해두어야함.
+ */
+public class AppContext {
+	public static void main(String[] args) {
+		
+	}
+}

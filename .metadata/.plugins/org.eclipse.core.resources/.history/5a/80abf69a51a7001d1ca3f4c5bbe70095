@@ -1,0 +1,10 @@
+/**
+ * 
+ */
+/**
+ * @author inung
+ *
+ */
+module SpringGUI {
+	requires java.desktop;
+}

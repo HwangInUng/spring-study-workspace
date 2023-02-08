@@ -1,0 +1,8 @@
+package gui.cook;
+
+public class Frypan implements Pan{
+	@Override
+	public void heat() {
+		System.out.println("지져버려");
+	}
+}

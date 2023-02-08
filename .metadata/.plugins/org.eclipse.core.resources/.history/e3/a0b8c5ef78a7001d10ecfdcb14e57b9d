@@ -1,0 +1,9 @@
+package com.edu.springmvc.controller;
+
+import org.springframework.stereotype.Controller;
+import com.edu.springmvc.controller.Controller;
+
+@Controller
+public class BoardController implements com.edu.springmvc.controller.Controller{
+	
+}
