@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 프로그램에서 사용할 객체를 등록 -->
+	<bean id="listController" class="com.edu.springmvc2.controller.ListController"></bean>
+	<bean id="registController" class="com.edu.springmvc2.controller.RegistController"></bean>
+	<bean id="detailController" class="com.edu.springmvc2.controller.DetailController"></bean>
+	<bean id="updateController" class="com.edu.springmvc2.controller.UpdateController"></bean>
+	<bean id="deleteController" class="com.edu.springmvc2.controller.DeleteController"></bean>
+
+	<!-- 방식 -->
+	<bean id="handlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<!-- 클래스가 보유한 멤버변수 -->
+		<property name="mappings">
+			<props>
+				<prop key="/board/list">listController</prop>
+				<prop key="/board/regist">registController</prop>
+				<prop key="/board/detail">detailController</prop>
+				<prop key="/board/update">updateController</prop>
+				<prop key="/board/delete">deleteController</prop>
+			</props>
+		</property>
+	</bean>
+
+</beans>

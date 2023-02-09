@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!--
+		-의존성 주입을 위한 bean의 등록정보를 설정하는 xml
+		-ApplicationContext 객체가 dispatcherServlet을 통해서 분석
+	 -->
+	 
+	 <!-- 1순위 : HandlerMapping(5가지)
+	 
+	 		1. DefaultAnnotationHandlerMapping *
+	 		2. SimpleUrlHandlerMapping *
+	 		3. BeanNameUrlHandlerMapping *
+	 		4. ControllerBeanNameHandlerMapping
+	 		5. ControllerClassNameHandlerMapping
+	  -->
+</beans>
