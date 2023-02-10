@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="mybatisBoardDAO" class="com.edu.springmvc2.model.MybatisBoardDAO"></bean>
+	<bean id="mybatis" class="com.edu.springmvc2.mybatis.Mybatis"></bean>
+	
+	<bean id="boardServiceImpl" class="com.edu.springmvc2.model.BoardServiceImpl">
+		<property name="mybatis" ref="mybatis"></property>
+		<property name="boardDAO" ref="mybatisBoardDAO"></property>
+	</bean>
+</beans>

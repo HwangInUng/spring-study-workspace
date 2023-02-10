@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
@@ -8,38 +9,27 @@
 	</bean>
 	
 	<!-- 프로그램에서 사용할 객체를 등록 -->
-	
-	<!-- Model 객체 -->
-	<!-- Factory Methdo는 싱글톤 객체에 적용 -->
-	<bean id="mybatis" class="com.edu.springmvc2.mybatis.Mybatis" factory-method="getInstance"/>
-	<bean id="mybatisBoardDAO" class="com.edu.springmvc2.model.MybatisBoardDAO"/>
-	<bean id="boardServiceImpl" class="com.edu.springmvc2.model.BoardServiceImpl"> <!-- weaving : 관계설정 -->
-		<property name="mybatis" ref="mybatis"></property>
-		<property name="boardDAO" ref="mybatisBoardDAO"></property>
-	</bean>
-	
 	<!-- 컨트롤러 객체 -->
-	<bean id="/board/list" class="com.edu.springmvc2.controller.ListController">
+	<bean name="/client/board/list" class="com.edu.springmvc2.controller.ListController">
 		<property name="boardService" ref="boardServiceImpl"/>
 	</bean>
-	<bean id="/board/registform" class="com.edu.springmvc2.controller.RegistFormController"/>
-	<bean id="/board/regist" class="com.edu.springmvc2.controller.RegistController"> <!-- weaving : 관계설정 -->
+	<bean name="/client/board/registform" class="com.edu.springmvc2.controller.RegistFormController"/>
+	<bean name="/client/board/regist" class="com.edu.springmvc2.controller.RegistController"> <!-- weaving : 관계설정 -->
 		<property name="boardService" ref="boardServiceImpl"/>
 	</bean>
-	<bean id="/board/detail" class="com.edu.springmvc2.controller.DetailController">
+	<bean name="/client/board/detail" class="com.edu.springmvc2.controller.DetailController">
 		<property name="boardService" ref="boardServiceImpl"/>
 	</bean>
-	<bean id="/board/update" class="com.edu.springmvc2.controller.UpdateController">
+	<bean name="/client/board/update" class="com.edu.springmvc2.controller.UpdateController">
 		<property name="boardService" ref="boardServiceImpl"/>
 	</bean>
-	<bean id="/board/delete" class="com.edu.springmvc2.controller.DeleteController">
+	<bean name="/client/board/delete" class="com.edu.springmvc2.controller.DeleteController">
 		<property name="boardService" ref="boardServiceImpl"/>
 	</bean>
-	
 	
 	<!-- View경로를 분석하여 View를 반환하는 해결객체 등록 -->
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/views/"/>
-		<property name="suffix" value=".jsp"/>
-	</bean>
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+				p:prefix="/WEB-INF/views/"
+				p:suffix=".jsp"
+	/>
 </beans>
