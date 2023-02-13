@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			 xmlns:context="http://www.springframework.org/schema/context"
+			 xmlns:beans="http://www.springframework.org/schema/beans"
+			 xmlns:jee="http://www.springframework.org/schema/jee"
+			 xmlns:p="http://www.springframework.org/schema/p"
+			 xsi:schemaLocation="http://www.springframework.org/schema/beans
+  										http://www.springframework.org/schema/beans/spring-beans.xsd
+											http://www.springframework.org/schema/jee
+											http://www.springframework.org/schema/jee/spring-jee.xsd
+											http://www.springframework.org/schema/beans
+											https://www.springframework.org/schema/beans/spring-beans.xsd
+											http://www.springframework.org/schema/context
+											https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<!-- 스프링이 지원하는 트랜잭션 등의 서비스 사용을 위해 스프링이 주도하여 매핑 -->
+
+	<!-- 커넥션 지원 -->
+	<jee:jndi-lookup jndi-name="jdbc/oracle" id="dataSource" resource-ref="true" /> <!-- java:comp/env/를 대신 지원 -->
+
+	<!-- 트랜잭션 매니저 등록 -->
+	<bean id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- 스프링 연동 mybatis 설정 -->
+	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- 콜론을 반드시 붙여야함 -->
+		<property name="configLocation" value="classpath:com/edu/springdb/mybatis/mybatis-config.xml" />
+	</bean>
+
+	<!-- SqlSession 객체 등록 -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactoryBean" />
+	</bean>
+	
+	<!-- bean 매핑 범위 설정 -->
+	<context:component-scan base-package="com.edu.springdb.model"/>
+</beans>
