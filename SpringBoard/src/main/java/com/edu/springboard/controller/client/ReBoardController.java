@@ -97,4 +97,17 @@ public class ReBoardController {
 		return mav;
 	}
 	
+	@RequestMapping(value = "/reboard/reply")
+	public ModelAndView registReply(ReBoard reBoard) {
+		log.info("-------답변 등록요청-------");
+		
+		reBoardService.registReply(reBoard);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("redirect:/reboard/detail?reboard_idx=" + reBoard.getReboard_idx());
+		
+		log.info("-------답변 등록완료-------");
+		return mav;
+	}
+	
 }

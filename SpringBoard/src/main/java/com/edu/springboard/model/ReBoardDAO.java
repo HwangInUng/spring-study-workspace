@@ -13,6 +13,7 @@ public interface ReBoardDAO {
 	public void delete(int reboard_idx);
 	
 	//답변관련
+	public int selectStep(ReBoard reBoard);
 	public void updateStep(ReBoard reBoard);
 	public void insertReply(ReBoard reBoard);
 }

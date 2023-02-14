@@ -4,27 +4,41 @@
 	<select id="selectAll" resultType="ReBoard">
 		select * from reboard order by team desc, step asc
 	</select>
-	
+
 	<select id="selectById" resultType="ReBoard" parameterType="int">
 		select * from reboard where reboard_idx=#{reboard_idx}
 	</select>
-	
+
 	<insert id="insert" parameterType="ReBoard">
 		insert into reboard(reboard_idx, title, writer, content, team)
 		values(seq_reboard.nextval, #{title}, #{writer}, #{content}, seq_reboard.nextval)
 	</insert>
-	
+
 	<update id="update" parameterType="ReBoard">
 		update reboard set title=#{title}, writer=#{writer}, content=#{content}
 		where reboard_idx=#{reboard_idx}
 	</update>
-	
+
 	<update id="updateHit" parameterType="int">
 		update reboard set hit=hit+1 where reboard_idx=#{reboard_idx}
 	</update>
-	
+
 	<delete id="delete" parameterType="int">
 		delete from reboard where reboard_idx=#{reboard_idx}
 	</delete>
 
+	<!-- 답변등록 -->
+	<select id="selectStep" resultType="int" parameterType="ReBoard">
+		select nvl(max(step),0) as step from reboard where team=#{team} and step>#{step} and depth=#{depth}
+	</select>
+
+	<update id="updateStep" parameterType="ReBoard">
+		update reboard set step=step+1
+		where team=#{team} and step>#{step}
+	</update>
+
+	<insert id="insertReply" parameterType="ReBoard">
+		insert into reboard(reboard_idx, title, writer, content, team, step, depth)
+		values(seq_reboard.nextval, #{title}, #{writer}, #{content}, #{team}, #{step}+1, #{depth})
+	</insert>
 </mapper>

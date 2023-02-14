@@ -40,7 +40,7 @@
 			%>
       <tr>
         <td><%=reBoard.getReboard_idx() %></td>
-        <td>
+        <td style="margin: <%=reBoard.getDepth() * 10%>px">
         	<a href="/reboard/detail?reboard_idx=<%=reBoard.getReboard_idx() %>"><%=reBoard.getTitle() %></a>
         </td>
         <td><%=reBoard.getWriter() %></td>

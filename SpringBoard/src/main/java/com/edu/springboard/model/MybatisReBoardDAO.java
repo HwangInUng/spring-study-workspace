@@ -55,15 +55,25 @@ public class MybatisReBoardDAO implements ReBoardDAO {
 			throw new ReBoardException("등록 실패");
 		}
 	}
-
+	
+	
+	@Override
+	public int selectStep(ReBoard reBoard) {
+		return sqlSessionTemplate.selectOne("ReBoard.selectStep", reBoard);
+	}
+	
 	@Override
 	public void updateStep(ReBoard reBoard) {
-
+		sqlSessionTemplate.update("ReBoard.updateStep", reBoard);
+		System.out.println("dao안에서의 step"+reBoard.getStep());
 	}
 
 	@Override
 	public void insertReply(ReBoard reBoard) throws ReBoardException {
-
+		int result = sqlSessionTemplate.insert("ReBoard.insertReply", reBoard);
+		if(result < 1) {
+			throw new ReBoardException("답변 등록 실패");
+		}
 	}
 
 }

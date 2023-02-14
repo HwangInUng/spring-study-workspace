@@ -49,14 +49,17 @@
 		<div class="row mt-5" id="reply_section">
 		<div class="col-md">
 		<form id="replyForm">
-			<input type="hidden" name="reboard_idx" value="">
+			<input type="hidden" name="reboard_idx" value="<%=reBoard.getReboard_idx()%>">
+			<input type="hidden" name="team" value="<%=reBoard.getTeam()%>">
+			<input type="hidden" name="step" value="<%=reBoard.getStep()%>">
+			<input type="hidden" name="depth" value="<%=reBoard.getDepth()+1%>">
  			<div class="form-group">
 				<label for="title">제목:</label>
-				<input type="text" class="form-control" value="" name="title">
+				<input type="text" class="form-control" name="title">
 			</div>
 			<div class="form-group">
 				<label for="writer">작성자:</label>
-				<input type="text" class="form-control" value="" name="writer">
+				<input type="text" class="form-control" name="writer">
 			</div>
 			<div class="form-group">
 				<label for="content">내용:</label>
@@ -77,23 +80,39 @@
 		$("#detailForm").submit();
 	}
 	
+	function regist(){
+		$("#replyForm").attr({
+			action: "/reboard/reply",
+			method: "post"
+		});
+		$("#replyForm").submit();
+	}
+	
 	$(function(){
 		$("#update").on("click", function(){
 			if(confirm("수정하시겠습니까?")){
 				updateNdelete("update");
 			}
 		});
+		
 		$("#del").on("click", function(){
 			if(confirm("삭제하시겠습니까?")){
 				updateNdelete("delete");
 			}
 		});
+		
 		$("#list").on("click", function(){
 			location.href="/reboard/list";
 		});
+		
 		$("#reply").on("click", function(){
 			$("#reply_section").show();
 		});
+		
+		$("#regist").on("click", function(){
+			regist();
+		});
+		
 		
 		$("#reply_section").hide();
 	});

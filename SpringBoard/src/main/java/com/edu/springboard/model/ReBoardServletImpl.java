@@ -33,6 +33,11 @@ public class ReBoardServletImpl implements ReBoardService {
 
 	@Override
 	public void registReply(ReBoard reBoard) throws ReBoardException {
+		int step = reBoardDAO.selectStep(reBoard);
+		if(step == 0) {
+			step = reBoard.getStep();
+		}
+		reBoard.setStep(step);
 		reBoardDAO.updateStep(reBoard);
 		reBoardDAO.insertReply(reBoard);
 	}

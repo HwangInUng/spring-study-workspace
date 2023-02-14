@@ -48,7 +48,7 @@
 		2. 어노테이션으로 이용하는 방법
 	 -->
 	 <aop:config>
-	 		<aop:pointcut expression="excution(public * com.edu.springboard.model.*Impl.*(..))" id="txcut"/>
+	 		<aop:pointcut expression="execution(public * com.edu.springboard.model.*Impl.*(..))" id="txcut"/>
 	 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txcut"/>
 	 </aop:config>
 	 
