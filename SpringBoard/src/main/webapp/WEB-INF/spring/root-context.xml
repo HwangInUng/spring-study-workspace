@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			 xmlns:context="http://www.springframework.org/schema/context"
+			 xmlns:aop="http://www.springframework.org/schema/aop"
+			 xmlns:tx="http://www.springframework.org/schema/tx"
+			 xmlns:beans="http://www.springframework.org/schema/beans"
+			 xmlns:jee="http://www.springframework.org/schema/jee"
+			 xmlns:p="http://www.springframework.org/schema/p"
+			 xsi:schemaLocation="http://www.springframework.org/schema/beans
+  										http://www.springframework.org/schema/beans/spring-beans.xsd
+											http://www.springframework.org/schema/jee
+											http://www.springframework.org/schema/jee/spring-jee.xsd
+											http://www.springframework.org/schema/beans
+											http://www.springframework.org/schema/beans/spring-beans.xsd
+											http://www.springframework.org/schema/tx
+											https://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+											http://www.springframework.org/schema/aop
+											https://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+											http://www.springframework.org/schema/context
+											https://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- jndi 연결 -->
+	<jee:jndi-lookup jndi-name="jdbc/oracle" id="dataSource" resource-ref="true"/>
+	
+	<!-- 트랜잭션 매니저 추가 -->
+	<bean id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<!-- 세션팩토리 추가 -->
+	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<!-- 참고할 config 파일 매칭 -->
+		<property name="configLocation" value="classpath:com/edu/springboard/db/mybatis-config.xml"/>
+	</bean>
+	
+	<!-- SQL세션 객체 등록 -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactoryBean"/>
+	</bean>	
+	
+	<context:component-scan base-package="com.edu.springboard.model"/>
+	
+	<!-- 트랜잭션 적용 방법
+		1. 선언적 방식 : xml에 작성
+		2. 어노테이션으로 이용하는 방법
+	 -->
+	 <aop:config>
+	 		<aop:pointcut expression="excution(public * com.edu.springboard.model.*Impl.*(..))" id="txcut"/>
+	 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txcut"/>
+	 </aop:config>
+	 
+	 <!-- 현재 어플리케이션이 사용중인 DB연동 객체를 적용 -->
+	 <tx:advice transaction-manager="dataSourceTransactionManager" id="txAdvice">
+	 	<tx:attributes>
+	 		<tx:method name="update" propagation="REQUIRED"/>
+	 	</tx:attributes>
+	 </tx:advice>
+</beans>

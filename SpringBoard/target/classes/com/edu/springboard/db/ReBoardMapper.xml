@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ReBoard">
+	<select id="selectAll" resultType="ReBoard">
+		select * from reboard order by team desc, step asc
+	</select>
+	
+	<select id="selectById" resultType="ReBoard" parameterType="int">
+		select * from reboard where reboard_idx=#{reboard_idx}
+	</select>
+	
+	<insert id="insert" parameterType="ReBoard">
+		insert into reboard(reboard_idx, title, writer, content, team)
+		values(seq_reboard.nextval, #{title}, #{writer}, #{content}, seq_reboard.nextval)
+	</insert>
+	
+	<update id="update" parameterType="ReBoard">
+		update reboard set title=#{title}, writer=#{writer}, content=#{content}
+		where reboard_idx=#{reboard_idx}
+	</update>
+	
+	<update id="updateHit" parameterType="int">
+		update reboard set hit=hit+1 where reboard_idx=#{reboard_idx}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from reboard where reboard_idx=#{reboard_idx}
+	</delete>
+
+</mapper>
