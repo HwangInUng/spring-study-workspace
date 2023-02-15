@@ -1,7 +1,0 @@
-package com.edu.springmvc.controller;
-
-import java.awt.List;
-
-public interface Controller {
-	public List read();
-}

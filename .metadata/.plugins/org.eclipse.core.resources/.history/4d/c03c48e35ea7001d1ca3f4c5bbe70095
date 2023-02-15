@@ -1,9 +1,0 @@
-package gui.school;
-
-public class SchoolBell implements Bell{
-	@Override
-	public void ring() {
-		// TODO Auto-generated method stub
-		
-	}
-}

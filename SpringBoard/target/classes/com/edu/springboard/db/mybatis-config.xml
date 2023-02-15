@@ -5,8 +5,12 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.edu.springboard.domain.ReBoard" alias="ReBoard"/>
+		<typeAlias type="com.edu.springboard.domain.Gallery" alias="Gallery"/>
+		<typeAlias type="com.edu.springboard.domain.Photo" alias="Photo"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="com/edu/springboard/db/ReBoardMapper.xml" />
+		<mapper resource="com/edu/springboard/db/GalleryMapper.xml" />
+		<mapper resource="com/edu/springboard/db/PhotoMapper.xml" />
 	</mappers>
 </configuration>

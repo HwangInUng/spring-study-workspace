@@ -45,13 +45,14 @@ public class JdbcReBoardDAO implements ReBoardDAO {
 	}
 	
 	@Override
-	public ReBoard selectDepth(ReBoard reBoard) {
-		return null;
+	public void insertReply(ReBoard reBoard) {
+
 	}
 
 	@Override
-	public void insertReply(ReBoard reBoard) {
-
+	public int selectStep(ReBoard reBoard) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
