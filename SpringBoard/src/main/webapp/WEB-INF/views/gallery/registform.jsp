@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,8 +34,6 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
@@ -166,11 +164,11 @@ function regist(){
 	
 	//ajax 비동기 전송
 	$.ajax({
-		url:"/gallery/regist", 
-		type:"post",
+		url:"/gallery/regist",
+		type:"POST",
 		processData:false,  //title=test&writer=ddd 문자열화 방지
 		contentType:false, //application/x-www 방지 ...
-		data:formData, 
+		data:formData,
 		success:function(result, status, xhr){
 			
 		}

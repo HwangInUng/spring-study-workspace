@@ -23,6 +23,23 @@
 	
 	<context:component-scan base-package="com.edu.springboard.controller.client" />
 	
+	<!-- formdata의 값이 controller에서null이 나오면 확인 필요 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSizePerFile" value="3145728"></beans:property>
+	</beans:bean>
 	
-	
+	<!-- Jackson 컨버터 등록 -->
+	<beans:bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<beans:property name="messageConverters">
+			<beans:list value-type="java.util.ArrayList"> <!-- 자바 자료형에 맞는 컨버터 목록 -->
+				<beans:ref bean="mappingJackson2HttpMessageConverter"/> <!-- 컨버터 ID 등록 -->
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+	<beans:bean id="mappingJackson2HttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+		<beans:property name="supportedMediaTypes">
+			<!-- 컨텐츠 타입 및 인코딩 처리 -->
+			<beans:value>application/json;charset=utf-8</beans:value>
+		</beans:property>
+	</beans:bean>
 </beans:beans>

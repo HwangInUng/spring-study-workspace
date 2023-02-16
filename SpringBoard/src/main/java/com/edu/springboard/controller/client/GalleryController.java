@@ -7,11 +7,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.edu.springboard.domain.Gallery;
+import com.edu.springboard.exception.GalleryException;
+import com.edu.springboard.exception.PhotoException;
+import com.edu.springboard.exception.UploadException;
 import com.edu.springboard.model.gallery.GalleryService;
 
 @Controller
@@ -28,14 +32,29 @@ public class GalleryController {
 		return new ModelAndView("gallery/registform");
 	}
 	
-	@GetMapping("/gallery/regist")
-	public ModelAndView regist(Gallery gallery, HttpServletRequest request) {
-		ServletContext context = request.getSession().getServletContext();
-		String realPath = (String)context.getAttribute("dataPath");
+	@ExceptionHandler(GalleryException.class)
+	public ModelAndView handle(GalleryException e) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("e", e);
+		mav.setViewName("error/result");
 		
-		galleryService.regist(gallery, realPath);
+		return mav;
+	}
+	
+	@ExceptionHandler(UploadException.class)
+	public ModelAndView handle(UploadException e) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("e", e);
+		mav.setViewName("error/result");
 		
+		return mav;
+	}
+	@ExceptionHandler(PhotoException.class)
+	public ModelAndView handle(PhotoException e) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("e", e);
+		mav.setViewName("error/result");
 		
-		return null;
+		return mav;
 	}
 }

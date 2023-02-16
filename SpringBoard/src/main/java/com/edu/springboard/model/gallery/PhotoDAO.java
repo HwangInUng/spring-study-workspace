@@ -6,7 +6,7 @@ import com.edu.springboard.domain.Photo;
 
 public interface PhotoDAO {
 	public List selectAll();
-	public Photo selectById(int photo_idx);
+	public List selectById(int photo_idx);
 	public void insert(Photo photo);
-	public void delete(int photo_idx);
+	public void delete(int gallery_idx);
 }

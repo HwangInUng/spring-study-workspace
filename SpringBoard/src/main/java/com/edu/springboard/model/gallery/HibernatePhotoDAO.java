@@ -19,7 +19,7 @@ public class HibernatePhotoDAO implements PhotoDAO{
 	}
 
 	@Override
-	public Photo selectById(int gallery_idx) {
+	public List selectById(int gallery_idx) {
 		return null;
 	}
 

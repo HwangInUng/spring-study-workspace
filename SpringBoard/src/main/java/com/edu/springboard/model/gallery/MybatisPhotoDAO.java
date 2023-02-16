@@ -20,7 +20,7 @@ public class MybatisPhotoDAO implements PhotoDAO{
 	}
 
 	@Override
-	public Photo selectById(int photo_idx) {
+	public List selectById(int photo_idx) {
 		return sqlSessionTemplate.selectOne("Photo.selectById", photo_idx);
 	}
 

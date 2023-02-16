@@ -13,16 +13,6 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	
-	<!-- dataPath리스너 -->
-	<context-param>
-		<param-name>dataPath</param-name>
-		<param-value>/resources/data/</param-value>
-	</context-param>
-	
-	<listener>
-		<listener-class>com.edu.springboard.listener.MyListener</listener-class>
-	</listener>
-	
 	<!-- 필터설정 -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>
