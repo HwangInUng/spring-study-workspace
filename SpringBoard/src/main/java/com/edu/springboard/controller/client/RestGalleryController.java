@@ -18,7 +18,6 @@ import com.edu.springboard.exception.GalleryException;
 import com.edu.springboard.exception.PhotoException;
 import com.edu.springboard.exception.UploadException;
 import com.edu.springboard.model.gallery.GalleryService;
-import com.google.gson.Gson;
 
 //해당 어노테이션은 @ResponseBody를 생략가능
 @RestController
