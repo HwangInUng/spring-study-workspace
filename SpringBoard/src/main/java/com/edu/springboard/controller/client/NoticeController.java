@@ -1,51 +1,34 @@
 package com.edu.springboard.controller.client;
 
-import java.util.List;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.edu.springboard.domain.Notice;
-import com.edu.springboard.exception.NoticeException;
 import com.edu.springboard.model.notice.NoticeService;
 
-@RestController
-@RequestMapping("/rest/notice")
+@Controller
 public class NoticeController {
-	private Logger log = LoggerFactory.getLogger(this.getClass());
-	
 	@Autowired
 	private NoticeService noticeService;
 	
-	@PostMapping("/regist")
-	public String regist(Notice notice) {
-		log.info(notice.getTitle());
-		log.info(notice.getWriter());
-		log.info(notice.getContent());
+	@GetMapping("/notice/list")
+	public ModelAndView goList() {
+		return new ModelAndView("notice/list");
+	}
+	
+	@GetMapping("/notice/registform")
+	public ModelAndView getRegistForm() {
+		return new ModelAndView("notice/registform");
+	}
+	
+	@GetMapping("notice/detail")
+	public ModelAndView getDetail(int notice_idx) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("notice_idx", notice_idx);
+		mav.setViewName("notice/detail");
 		
-		noticeService.regist(notice);
-		
-		return "등록 성공";
-	}
-	
-	@GetMapping("/list")
-	public List getList() {
-		return noticeService.selectAll();
-	}
-	
-	@GetMapping("/detail")
-	public Notice getDetail(int notice_idx) {
-		return noticeService.detail(notice_idx);
-	}
-	
-	@ExceptionHandler(NoticeException.class)
-	public String handle(NoticeException e) {
-		return e.getMessage();
+		return mav;
 	}
 }
