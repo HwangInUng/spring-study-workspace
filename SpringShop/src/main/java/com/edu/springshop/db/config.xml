@@ -6,9 +6,11 @@
 	<typeAliases>
 		<typeAlias type="com.edu.springshop.domain.Category" alias="Category"/>
 		<typeAlias type="com.edu.springshop.domain.Product" alias="Product"/>
+		<typeAlias type="com.edu.springshop.domain.Pimg" alias="Pimg"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="com/edu/springshop/db/CategoryMapper.xml"/>
 		<mapper resource="com/edu/springshop/db/ProductMapper.xml"/>
+		<mapper resource="com/edu/springshop/db/PimgMapper.xml"/>
 	</mappers>
 </configuration>

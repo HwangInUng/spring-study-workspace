@@ -27,6 +27,15 @@
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	<!-- Http PUT, DELETE 메서드 식별 -->
+	<filter>
+		<filter-name>httpMethod</filter-name>
+		<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>httpMethod</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 	
 
 	<!-- 관리자 전용  서블릿매핑-->
@@ -47,17 +56,17 @@
 	
 	<!-- 일반 사용자 전용  서블릿매핑-->
 	<servlet>
-		<servlet-name>userServlet</servlet-name>
+		<servlet-name>shopServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/spring/appServlet/user-context.xml</param-value>
+			<param-value>/WEB-INF/spring/appServlet/shop-context.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 		
 	<servlet-mapping>
-		<servlet-name>userServlet</servlet-name>
+		<servlet-name>shopServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 

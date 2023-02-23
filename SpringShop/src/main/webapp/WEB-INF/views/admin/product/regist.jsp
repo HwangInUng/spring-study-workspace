@@ -130,8 +130,8 @@
 														
 							<div class="form-group row">
 								<div class="col">
-									<button type="button" class="btn btn-danger btn-md" id="bt_regist">등록</button>							
-									<button type="button" class="btn btn-danger btn-md" id="bt_list">목록</button>									
+									<button type="button" class="btn btn-dark btn-md" id="bt_regist">등록</button>							
+									<button type="button" class="btn btn-secondary btn-md" id="bt_list">목록</button>									
 								</div>
 							</div>							
 							
@@ -247,7 +247,7 @@
 				processData: false,
 				contentType: false,
 				success: function(result){
-					console.log(result);
+					alert(result.msg);
 				}
 			});
 		}
@@ -265,6 +265,10 @@
 			
 			$("#bt_regist").on("click", function(){
 				regist();
+			});
+			
+			$("#bt_list").on("click", function(){
+				location.href="/admin/product/list";
 			});
 			
 		});
