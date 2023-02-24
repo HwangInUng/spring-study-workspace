@@ -10,11 +10,11 @@
 		<result column="detail" property="detail"/>
 		
 		<association column="category_idx" property="category" javaType="Category" select="Category.select"/>
-		<collection column="category_idx" property="pimgList" javaType="java.util.List" ofType="Pimg" select="Pimg.selectByProduct"/>
+		<collection column="product_idx" property="pimgList" javaType="java.util.List" ofType="Pimg" select="Pimg.selectByProduct"/>
 	</resultMap>
 	
 	<select id="selectAll" resultMap="productMap">
-		select * from product order by product_idx asc
+		select * from product order by product_idx desc
 	</select>
 
 	<select id="select" resultMap="productMap" parameterType="int">

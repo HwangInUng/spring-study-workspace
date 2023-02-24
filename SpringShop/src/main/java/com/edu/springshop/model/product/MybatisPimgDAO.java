@@ -28,7 +28,7 @@ public class MybatisPimgDAO implements PimgDAO{
 	public void insert(Pimg pimg) throws PimgException {
 		int result = sqlSessionTemplate.insert("Pimg.insert", pimg);
 		if(result < 1) {
-			throw new PimgException("등록 성공");
+			throw new PimgException("등록 실패");
 		}
 	}
 
@@ -36,7 +36,7 @@ public class MybatisPimgDAO implements PimgDAO{
 	public void delete(int product_idx) throws PimgException {
 		int result = sqlSessionTemplate.delete("Pimg.delete", product_idx);
 		if(result < 1) {
-			throw new PimgException("삭제 성공");
+			throw new PimgException("삭제 실패");
 		}
 	}
 

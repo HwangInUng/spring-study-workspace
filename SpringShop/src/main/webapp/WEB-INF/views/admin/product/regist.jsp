@@ -248,7 +248,12 @@
 				contentType: false,
 				success: function(result){
 					alert(result.msg);
-				}
+				},
+				error: function(xhr, status, err){
+					console.log(xhr);
+					let json = JSON.parse(xhr.responseText);
+					alert(json.msg);
+				},
 			});
 		}
 		

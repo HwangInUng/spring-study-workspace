@@ -89,6 +89,13 @@
 			<artifactId>aspectjrt</artifactId>
 			<version>${org.aspectj-version}</version>
 		</dependency>
+		<!-- aspectJ weaver -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.8.14</version>
+			<scope>runtime</scope>
+		</dependency>
 
 		<!-- Logging -->
 		<dependency>
@@ -166,7 +173,6 @@
 			<version>4.7</version>
 			<scope>test</scope>
 		</dependency>
-
 
 	</dependencies>
 	<build>

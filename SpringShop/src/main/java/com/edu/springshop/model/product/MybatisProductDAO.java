@@ -28,7 +28,7 @@ public class MybatisProductDAO implements ProductDAO{
 	public void insert(Product product) throws ProductException {
 		int result = sqlSessionTemplate.insert("Product.insert", product);
 		if(result < 1) {
-			throw new ProductException("등록 성공");
+			throw new ProductException("등록 실패");
 		}
 	}
 
@@ -36,7 +36,7 @@ public class MybatisProductDAO implements ProductDAO{
 	public void update(Product product) throws ProductException {
 		int result = sqlSessionTemplate.update("Product.update", product);
 		if(result < 1) {
-			throw new ProductException("수정 성공");
+			throw new ProductException("수정 실패");
 		}
 	}
 
@@ -44,7 +44,7 @@ public class MybatisProductDAO implements ProductDAO{
 	public void delete(int product_idx) throws ProductException {
 		int result = sqlSessionTemplate.delete("Product.delete", product_idx);
 		if(result < 1) {
-			throw new ProductException("삭제 성공");
+			throw new ProductException("삭제 실패");
 		}
 	}
 	

@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.edu.springshop.domain.Pimg;
 import com.edu.springshop.domain.Product;
@@ -33,7 +35,8 @@ public class ProductServiceImpl implements ProductService{
 	public Product select(int product_idx) {
 		return productDAO.select(product_idx);
 	}
-
+	
+	@Transactional(propagation = Propagation.REQUIRED)
 	@Override
 	public void regist(Product product, String savePath) throws ProductException, PimgException, UploadException{
 		/* save() :
@@ -42,9 +45,7 @@ public class ProductServiceImpl implements ProductService{
 		 */
 		fileManager.save(product, savePath);
 		
-		/* insert() :
-		 * -객체를 등록하고 product_idx를 반환
-		 */
+		/* insert() : 객체를 등록하고 product_idx를 반환 */
 		productDAO.insert(product);
 		
 		/* product에 저장된 객체 수만큼 반복문을 수행하여 저장 */

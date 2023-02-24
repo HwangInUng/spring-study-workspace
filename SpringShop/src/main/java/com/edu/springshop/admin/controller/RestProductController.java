@@ -30,6 +30,7 @@ public class RestProductController {
 	@Autowired
 	private ProductService productService;
 	
+	/*----------------------------------------상품 등록*/
 	@RequestMapping(value="/product", method=RequestMethod.POST)
 	public ResponseEntity<Message> regist(Product product, HttpSession session) {
 		log.debug("======등록 요청======");
@@ -49,6 +50,7 @@ public class RestProductController {
 		return entity;
 	}
 	
+	/*----------------------------------------Product Exception*/
 	@ExceptionHandler(ProductException.class)
 	public ResponseEntity<Message> handle(ProductException e){
 		Message message = new Message();
@@ -58,6 +60,7 @@ public class RestProductController {
 		return entity;
 	}
 	
+	/*----------------------------------------Pimg Exception*/
 	@ExceptionHandler(PimgException.class)
 	public ResponseEntity<Message> handle(PimgException e){
 		Message message = new Message();
@@ -67,6 +70,7 @@ public class RestProductController {
 		return entity;
 	}
 	
+	/*----------------------------------------Upload Exception*/
 	@ExceptionHandler(UploadException.class)
 	public ResponseEntity<Message> handle(UploadException e){
 		Message message = new Message();

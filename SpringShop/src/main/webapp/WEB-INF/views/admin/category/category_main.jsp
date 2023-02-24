@@ -162,7 +162,7 @@
 
 		/*-------------------------------------수정*/
 		function edit(){
-			if(isRun == true){
+			if(isRun == true && !confirm("수정하시겠습니까?")){
 				return;
 			}
 			/*form 사용 제한으로 문자열화 시키기 위한 json 선언*/
@@ -190,7 +190,7 @@
 
 		/*-------------------------------------삭제*/
 		function del(){
-			if(isRun == true){
+			if(isRun == true && !confirm("삭제하시겠습니까?")){
 				return;
 			}
 			
@@ -225,9 +225,6 @@
 				success: function(result, status, xhr){
 					isRun = false;
 					getList();
-				},
-				error: function(xhr, status, err){
-					alert("에러발생" + err);
 				}
 			});
 		}
@@ -251,15 +248,11 @@
 			});
 			
 			$("#bt_edit").on("click", function(){
-				if(confirm("수정하시겠습니까?")){
-					edit();
-				}
+				edit();
 			});
 
 			$("#bt_del").on("click", function(){
-				if(confirm("삭제하시겠습니까?")){
-					del();
-				}
+				del();
 			});
 		});
 	</script>
