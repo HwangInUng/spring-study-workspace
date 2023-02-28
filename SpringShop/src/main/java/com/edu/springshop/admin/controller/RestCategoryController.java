@@ -2,6 +2,8 @@ package com.edu.springshop.admin.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +32,7 @@ public class RestCategoryController {
 	private CategoryService categoryService;
 
 	@PostMapping
-	public Message regist(Category category) { // 등록요청
+	public Message regist(Category category, HttpServletRequest request) { // 등록요청
 
 		categoryService.regist(category);
 
@@ -41,12 +43,12 @@ public class RestCategoryController {
 	}
 
 	@GetMapping
-	public List<Category> getList() { // 목록요청
+	public List<Category> getList(HttpServletRequest request) { // 목록요청
 		return categoryService.selectAll();
 	}
 
 	@PutMapping
-	public ResponseEntity<Message> update(@RequestBody Category category) { // 수정요청
+	public ResponseEntity<Message> update(@RequestBody Category category, HttpServletRequest request) { // 수정요청
 		log.debug("======수정 요청======");
 
 		categoryService.update(category);
@@ -60,7 +62,7 @@ public class RestCategoryController {
 	}
 
 	@DeleteMapping("/{category_idx}")
-	public ResponseEntity<Message> delete(@PathVariable int category_idx) {
+	public ResponseEntity<Message> delete(@PathVariable int category_idx, HttpServletRequest request) {
 		log.debug("======삭제 요청======");
 
 		categoryService.delete(category_idx);

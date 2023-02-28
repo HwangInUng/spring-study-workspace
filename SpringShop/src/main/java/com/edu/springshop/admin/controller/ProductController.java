@@ -2,6 +2,8 @@ package com.edu.springshop.admin.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +28,7 @@ public class ProductController {
 	private ProductService productService;
 	
 	@GetMapping("/registform")
-	public ModelAndView getForm() {
+	public ModelAndView getForm(HttpServletRequest request) {
 		
 		List categoryList = categoryService.selectAll();
 		
@@ -38,7 +40,7 @@ public class ProductController {
 	}
 	
 	@GetMapping("/list")
-	public ModelAndView getList() {
+	public ModelAndView getList(HttpServletRequest request) {
 		log.debug("======상품 리스트 요청======");
 		List<Product> productList = productService.selectAll();
 		
@@ -51,7 +53,7 @@ public class ProductController {
 	}
 	
 	@GetMapping("/detail")
-	public ModelAndView getDetail(int product_idx) {
+	public ModelAndView getDetail(int product_idx, HttpServletRequest request) {
 		log.debug("======" + product_idx + "번 상품 요청======");
 		List<Product> categoryList = categoryService.selectAll();
 		Product product = productService.select(product_idx);

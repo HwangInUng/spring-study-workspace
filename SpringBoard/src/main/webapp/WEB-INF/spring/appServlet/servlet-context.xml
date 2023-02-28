@@ -21,7 +21,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.edu.springboard.controller.client" />
+	<context:component-scan base-package="com.edu.springboard" />
 	
 	<!-- formdata의 값이 controller에서null이 나오면 확인 필요 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

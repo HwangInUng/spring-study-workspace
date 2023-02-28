@@ -1,6 +1,7 @@
 package com.edu.springshop.admin.controller;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -32,9 +33,10 @@ public class RestProductController {
 	
 	/*----------------------------------------상품 등록*/
 	@RequestMapping(value="/product", method=RequestMethod.POST)
-	public ResponseEntity<Message> regist(Product product, HttpSession session) {
+	public ResponseEntity<Message> regist(Product product, HttpServletRequest request) {
 		log.debug("======등록 요청======");
 		//저장경로 추출
+		HttpSession session = request.getSession();
 		ServletContext context = session.getServletContext();
 		String savePath = context.getRealPath("/resources/data/");
 		
