@@ -42,16 +42,4 @@ public class RestAdminController {
 		log.debug("====== 로그인 승인 ======");
 		return entity;
 	}
-	
-	@ExceptionHandler(AdminException.class)
-	public ResponseEntity<Message> handle(AdminException e){
-		
-		Message message = new Message();
-		message.setMsg(e.getMessage());
-		
-		ResponseEntity<Message> entity = new ResponseEntity<Message>(message, HttpStatus.INTERNAL_SERVER_ERROR);
-		
-		return entity;
-	}
-
 }

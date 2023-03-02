@@ -32,6 +32,8 @@
 		</aop:aspect>
 	</aop:config>
 
+	<!-- Rest Global Exception 등록 -->
+	<beans:bean id="restShopGlobalException" class="com.edu.springshop.aop.RestShopGlobalException" />
 	<!-- Global Exception 등록 -->
-	<!-- <beans:bean id="globalException" class="com.edu.springshop.aop.RestGlobalException" /> -->
+	<beans:bean id="shopGlobalException" class="com.edu.springshop.aop.ShopGlobalException" />
 </beans:beans>

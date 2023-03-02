@@ -1,6 +1,8 @@
 package com.edu.springshop.shop.controller;
 
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +16,7 @@ public class MainController {
 	private CategoryService categoryService;
 	
 	@GetMapping("/")
-	public ModelAndView getMain() {
+	public ModelAndView getMain(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("shop/index");
 		

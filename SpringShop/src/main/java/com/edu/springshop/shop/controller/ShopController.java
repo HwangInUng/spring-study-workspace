@@ -2,6 +2,8 @@ package com.edu.springshop.shop.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +24,7 @@ public class ShopController {
 	private ProductService productService;
 	
 	@GetMapping("/list")
-	public ModelAndView getList() {
+	public ModelAndView getList(HttpServletRequest request) {
 		log.debug("======상품 리스트 호출======");
 		List productList = productService.selectAll();
 		
@@ -35,7 +37,7 @@ public class ShopController {
 	}
 	
 	@GetMapping("detail")
-	public ModelAndView getDetail(int product_idx) {
+	public ModelAndView getDetail(int product_idx, HttpServletRequest request) {
 		log.debug("======"+ product_idx +"번 상품 호출======");
 		Product product = productService.select(product_idx);
 		

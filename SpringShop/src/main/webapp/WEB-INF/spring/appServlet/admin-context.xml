@@ -28,9 +28,6 @@
 	
 	<context:component-scan base-package="com.edu.springshop.admin.controller" />
 	
-	<!-- 관리자 글로벌 예외 객체 등록 -->
-	<beans:bean id="adminGlobalException" class="com.edu.springshop.aop.AdminGlobalException"></beans:bean>
-	
 	<!-- 관리자 로그인 체크 bean 설정 -->
 	<beans:bean id="adminLoginCheckAdvice" class="com.edu.springshop.aop.AdminLoginCheckAdvice"/>
 	
@@ -44,5 +41,11 @@
 			<aop:around method="sessionCheck" pointcut-ref="adminLoginCheckPointcut"/>
 		</aop:aspect>
 	</aop:config>
+	
+	<!-- 등록순서가 중요 -->
+	<!-- Rest 글로벌 예외 객체 등록 -->
+	<beans:bean id="restAdminGlobalException" class="com.edu.springshop.aop.RestAdminGlobalException"/>
+	<!-- 관리자 글로벌 예외 객체 등록 -->
+	<beans:bean id="adminGlobalException" class="com.edu.springshop.aop.AdminGlobalException"/>
 	
 </beans:beans>

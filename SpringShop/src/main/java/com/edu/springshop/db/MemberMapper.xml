@@ -8,21 +8,21 @@
 	
 	<select id="select" parameterType="Member" resultType="Member">
 		select * from member 
-		where id=#{id} and pass=#{pass}
+		where member_id=#{member_id} and member_pass=#{member_pass}
 	</select>
 	
 	<insert id="insert" parameterType="Member">
-		insert into member(id, pass, name, email)
-		values(#{id},#{pass},#{name},#{email})
+		insert into member(member_id, member_pass, member_name, email)
+		values(#{member_id}, #{member_pass}, #{member_name},#{email})
 	</insert>
 	
 	<update id="update" parameterType="Member">
-		update member set pass=#{pass}, email=#{email}
+		update member set member_pass=#{member_pass}, email=#{email}
 		where member_idx=#{member_idx} 	
 	</update>
 	
 	<delete id="delete" parameterType="Member">
-		delete from member where id=#{id} and pass=#{pass} 
+		delete from member where member_id=#{member_id} and member_pass=#{member_pass} 
 	</delete>
 	
 </mapper>
